@@ -1,0 +1,85 @@
+---
+import CTASection from "../components/CTASection";
+import FadeInSection from "../components/FadeInSection";
+import FeatureCard from "../components/FeatureCard";
+import SectionTitle from "../components/SectionTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const layers = [
+  {
+    icon: "FileText",
+    title: "Prompt",
+    description: "その場の依頼文ではなく、目的、入力、制約、出力形式、確認観点を固定した作業指示書。",
+    items: ["入力条件を揃える", "出力形式を固定する", "判断基準を明文化する"],
+  },
+  {
+    icon: "Library",
+    title: "Skill",
+    description: "繰り返す作業を、手順、禁止事項、検証方法まで含めて保存した再利用可能な実行単位。",
+    items: ["手順を短く保つ", "使うタイミングを決める", "検証方法を含める"],
+  },
+  {
+    icon: "Bot",
+    title: "Agent",
+    description: "目的、権限、利用ツール、完了条件を持ち、実行から報告まで進めるAIスタッフ。",
+    items: ["権限境界を決める", "作業単位で任せる", "ログと差分を確認する"],
+  },
+];
+---
+
+<BaseLayout
+  title="Prompt / Skill / Agent 入門"
+  description="Prompt、Skill、Agentの違いと、AI業務改善での使い分けを整理します。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="Primer"
+          title="Prompt / Skill / Agent を、業務改善の部品として理解する。"
+          text="AI活用が属人的になる理由は、入力文だけを改善しているからです。保存、再利用、実行、評価の単位に分けると、業務改善として回り始めます。"
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="feature-grid">
+        {layers.map((layer) => <FeatureCard client:visible {...layer} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Design flow"
+          title="小さな作業から、AIスタッフOSへ拡張する。"
+          text="最初から大きなAgentを作るのではなく、よく使うPromptをSkill化し、安定した作業だけAgentに渡します。"
+        />
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <ol class="steps">
+          <li>毎週繰り返す業務を一つ選び、入力と成果物を固定する。</li>
+          <li>Promptに制約、出力形式、レビュー観点を追加する。</li>
+          <li>手順と検証方法をSkillとして保存する。</li>
+          <li>権限と完了条件を定義し、Agentに実行させる範囲を決める。</li>
+        </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="次はCodexで実行基盤を作る"
+      text="設計した作業単位を、実際のリポジトリ、検証、コミット運用へ接続します。"
+      primaryHref="/codex/"
+      primaryLabel="Codex活用を見る"
+      secondaryHref="/articles/"
+      secondaryLabel="実践ログを見る"
+    />
+  </div>
+</BaseLayout>

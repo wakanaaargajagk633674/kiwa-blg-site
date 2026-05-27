@@ -1,0 +1,140 @@
+---
+import ArticleCard from "../components/ArticleCard";
+import CTASection from "../components/CTASection";
+import FadeInSection from "../components/FadeInSection";
+import FeatureCard from "../components/FeatureCard";
+import Hero from "../components/Hero";
+import SectionTitle from "../components/SectionTitle.astro";
+import ToolCompareCard from "../components/ToolCompareCard";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { articleFromModule, sortArticles } from "../lib/articles";
+import type { ArticleModule } from "../lib/articles";
+import { toolComparisons } from "../lib/tools";
+
+const articleModules = import.meta.glob<ArticleModule>("../content/articles/*.{md,mdx}", { eager: true });
+const articles = sortArticles(
+  Object.entries(articleModules).map(([path, articleModule]) => articleFromModule(path, articleModule)),
+).slice(0, 3);
+
+const features = [
+  {
+    icon: "Workflow",
+    eyebrow: "Process",
+    title: "業務をAIに渡せる粒度へ分解",
+    description: "人の判断、AIの生成、ツール実行、確認作業を切り分け、繰り返し使える手順にします。",
+    href: "/prompt-skill-agent/",
+  },
+  {
+    icon: "Terminal",
+    eyebrow: "Execution",
+    title: "Codexで成果物まで進める",
+    description: "実装、検証、差分確認、コミットまでを作業単位にし、開発Agentを現場の手足として使います。",
+    href: "/codex/",
+  },
+  {
+    icon: "Library",
+    eyebrow: "Knowledge",
+    title: "Obsidianに運用知を残す",
+    description: "Prompt、Skill、Agent、評価ログをMarkdownで蓄積し、次の案件へ再利用できる資産にします。",
+    href: "/articles/",
+  },
+];
+
+const labSystems = [
+  "Promptは入力文ではなく、業務判断を安定させる設計書として扱う。",
+  "Skillは繰り返す作業を、手順、制約、検証方法まで含めて保存する。",
+  "Agentは権限、ツール、完了条件を明確にして、実行とレビューを分ける。",
+  "Evalは感覚評価ではなく、再現可能なチェックリストとして運用に戻す。",
+];
+---
+
+<BaseLayout>
+  <Hero client:load />
+
+  <section class="section">
+    <div class="container">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Operating model"
+          title="AI活用を、単発の会話から業務システムへ変える。"
+          text="このサイトではAIツールの使い方だけでなく、成果物を保存し、改善し、再利用するための運用設計を扱います。"
+        />
+      </FadeInSection>
+      <div class="feature-grid">
+        {features.map((feature) => <FeatureCard client:visible {...feature} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Lab principle"
+          title="実務で使えるAIスタッフOSを組む。"
+          text="AI秘書、開発Agent、ナレッジベース、評価ループを個別ツールで終わらせず、現場で回る単位に接続します。"
+        />
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <ol class="steps">
+          {labSystems.map((item) => <li>{item}</li>)}
+        </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Latest logs"
+          title="実践ログ"
+          text="AI業務改善の設計、開発Agent活用、ツール比較を、現場で再利用しやすい形で記録します。"
+        />
+      </FadeInSection>
+      <div class="article-grid">
+        {
+          articles.map((article) => (
+            <ArticleCard
+              client:visible
+              title={article.title}
+              description={article.description}
+              href={article.href}
+              category={article.category}
+              date={article.dateLabel}
+              readTime={article.readTime}
+              tags={article.tags}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Tool stack"
+          title="用途で選ぶAIツール"
+          text="同じAIでも、相談、開発、調査、ナレッジ化では強みが違います。役割を分けるほど運用は安定します。"
+        />
+      </FadeInSection>
+      <div class="tool-grid">
+        {toolComparisons.slice(0, 2).map((tool) => <ToolCompareCard client:visible {...tool} />)}
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="Prompt / Skill / Agent の基本設計から読む"
+      text="AI活用を属人的なコツで終わらせず、保存、共有、改善できる運用単位に変えるための入口です。"
+      primaryHref="/prompt-skill-agent/"
+      primaryLabel="入門ページへ"
+      secondaryHref="/tools/"
+      secondaryLabel="ツール比較を見る"
+    />
+  </div>
+</BaseLayout>

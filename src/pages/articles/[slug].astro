@@ -1,0 +1,47 @@
+---
+import FadeInSection from "../../components/FadeInSection";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { articleFromModule } from "../../lib/articles";
+import type { ArticleEntry, ArticleModule } from "../../lib/articles";
+
+export function getStaticPaths() {
+  const articleModules = import.meta.glob<ArticleModule>("../../content/articles/*.{md,mdx}", { eager: true });
+
+  return Object.entries(articleModules).map(([path, articleModule]) => {
+    const article = articleFromModule(path, articleModule);
+
+    return {
+      params: { slug: article.slug },
+      props: { article, articleModule },
+    };
+  });
+}
+
+const { article, articleModule } = Astro.props as {
+  article: ArticleEntry;
+  articleModule: ArticleModule;
+};
+const Content = articleModule.default;
+---
+
+<BaseLayout title={article.title} description={article.description}>
+  <article class="container article-shell">
+    <FadeInSection client:load>
+      <header class="article-header">
+        <div class="article-card-meta">
+          <span>{article.category}</span>
+          <time datetime={String(article.pubDate)}>{article.dateLabel}</time>
+          {article.readTime && <span>{article.readTime}</span>}
+        </div>
+        <h1>{article.title}</h1>
+        <p class="hero-lede">{article.description}</p>
+        <div class="tag-row">
+          {article.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+      </header>
+    </FadeInSection>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

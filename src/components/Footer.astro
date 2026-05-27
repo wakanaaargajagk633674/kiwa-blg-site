@@ -1,0 +1,30 @@
+---
+import { navItems, site } from "../lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href="/">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span class="brand-text">
+          <strong>{site.name}</strong>
+          <small>AIを業務改善の実行基盤へ</small>
+        </span>
+      </a>
+      <p class="footer-copy">
+        Prompt、Skill、Agent、MCP、Hook、Guardrails、Evalを、現場で使える運用単位に分解して記録します。
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {year} kiwa-blg.com</span>
+    <span>Static Astro site. No server runtime.</span>
+  </div>
+</footer>

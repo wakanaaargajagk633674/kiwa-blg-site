@@ -1,0 +1,40 @@
+---
+import CTASection from "../components/CTASection";
+import FadeInSection from "../components/FadeInSection";
+import SectionTitle from "../components/SectionTitle.astro";
+import ToolCompareCard from "../components/ToolCompareCard";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { toolComparisons } from "../lib/tools";
+---
+
+<BaseLayout title="Tools比較" description="ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianの役割と使い分け。">
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="Tools"
+          title="AIツールは、役割で分けるほど強くなる。"
+          text="一つのAIで全部を解くのではなく、相談、実装、調査、保存、評価の役割を分けて、業務改善の運用に組み込みます。"
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="tool-grid">
+        {toolComparisons.map((tool) => <ToolCompareCard client:visible {...tool} />)}
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="比較した結果を実践ログに落とす"
+      text="ツール選定は一度で終わりません。作業ログ、失敗条件、改善結果を残して、次の判断材料にします。"
+      primaryHref="/articles/"
+      primaryLabel="Articlesを見る"
+    />
+  </div>
+</BaseLayout>

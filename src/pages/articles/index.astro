@@ -1,0 +1,48 @@
+---
+import ArticleCard from "../../components/ArticleCard";
+import FadeInSection from "../../components/FadeInSection";
+import SectionTitle from "../../components/SectionTitle.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { articleFromModule, sortArticles } from "../../lib/articles";
+import type { ArticleModule } from "../../lib/articles";
+
+const articleModules = import.meta.glob<ArticleModule>("../../content/articles/*.{md,mdx}", { eager: true });
+const articles = sortArticles(
+  Object.entries(articleModules).map(([path, articleModule]) => articleFromModule(path, articleModule)),
+);
+---
+
+<BaseLayout title="Articles" description="AI業務改善、Codex活用、Prompt / Skill / Agent設計の実践ログ一覧。">
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="Articles"
+          title="実践ログと設計メモ"
+          text="AIを業務改善の実行基盤にするための試行錯誤、設計、比較、検証をMarkdown / MDXで管理します。"
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="article-grid">
+        {
+          articles.map((article) => (
+            <ArticleCard
+              client:visible
+              title={article.title}
+              description={article.description}
+              href={article.href}
+              category={article.category}
+              date={article.dateLabel}
+              readTime={article.readTime}
+              tags={article.tags}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

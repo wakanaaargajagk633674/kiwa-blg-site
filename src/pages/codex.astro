@@ -1,0 +1,77 @@
+---
+import CTASection from "../components/CTASection";
+import FadeInSection from "../components/FadeInSection";
+import FeatureCard from "../components/FeatureCard";
+import SectionTitle from "../components/SectionTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const codexFeatures = [
+  {
+    icon: "Terminal",
+    title: "読む",
+    description: "リポジトリの構造、既存パターン、テスト方法を先に確認し、作業範囲を絞ります。",
+  },
+  {
+    icon: "Code2",
+    title: "作る",
+    description: "Astro、React、TypeScript、CSSなど、既存方針に沿って小さな差分で実装します。",
+  },
+  {
+    icon: "ClipboardCheck",
+    title: "検証する",
+    description: "ビルド、型、表示確認、差分レビューを通して、完了条件を満たしたか確認します。",
+  },
+];
+---
+
+<BaseLayout title="Codex活用" description="CodexをAI業務改善と静的サイト制作の実行Agentとして使う方法。">
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="Codex"
+          title="Codexを、作業を完了させる開発Agentとして使う。"
+          text="Codexは相談だけでなく、リポジトリを読み、実装し、検証し、コミットまで進める実行担当として設計できます。"
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="feature-grid">
+        {codexFeatures.map((feature) => <FeatureCard client:visible {...feature} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Workflow"
+          title="Codex運用は、依頼文より完了条件が重要。"
+          text="何を作るかだけでなく、どこまで触ってよいか、何で検証するか、どの単位でコミットするかを明確にします。"
+        />
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <ol class="steps">
+          <li>目的、対象ディレクトリ、禁止事項、完了条件を渡す。</li>
+          <li>既存構造を読み、変更範囲を限定して実装する。</li>
+          <li>ビルドやテストを実行し、失敗したら原因を読んで直す。</li>
+          <li>差分と結果を確認して、作業単位ごとにコミットする。</li>
+        </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="ツールごとの役割も整理する"
+      text="Codexだけに寄せず、ChatGPT、Claude Code、Cursor、Gemini、Obsidianとの使い分けを設計します。"
+      primaryHref="/tools/"
+      primaryLabel="Tools比較へ"
+    />
+  </div>
+</BaseLayout>

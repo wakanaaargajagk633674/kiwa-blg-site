@@ -1,0 +1,48 @@
+---
+import { navItems, site } from "../lib/site";
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${site.name} トップへ`}>
+      <span class="brand-mark" aria-hidden="true">K</span>
+      <span class="brand-text">
+        <strong>{site.name}</strong>
+        <small>kiwa-blg.com</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      {
+        navItems.map((item) => (
+          <a class:list={["nav-link", isActive(item.href) && "is-active"]} href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="header-cta" href="/contact/">相談メモ</a>
+
+    <details class="mobile-nav">
+      <summary aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+      <div class="mobile-nav-panel">
+        {
+          navItems.map((item) => (
+            <a class:list={["mobile-nav-link", isActive(item.href) && "is-active"]} href={item.href}>
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+  </div>
+</header>

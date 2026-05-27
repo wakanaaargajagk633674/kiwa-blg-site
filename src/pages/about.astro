@@ -1,0 +1,81 @@
+---
+import CTASection from "../components/CTASection";
+import FadeInSection from "../components/FadeInSection";
+import FeatureCard from "../components/FeatureCard";
+import SectionTitle from "../components/SectionTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About" description="AI業務改善ラボの方針、扱うテーマ、運用思想を紹介します。">
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="About"
+          title="AIを、現場の成果物が増える方向に使う。"
+          text="AI業務改善ラボは、AIツールのニュースではなく、実務の時間を減らし、成果物を残し、次回の作業品質を上げるための実践メディアです。"
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <div class="info-panel">
+          <h3>扱う中心テーマ</h3>
+          <p>
+            ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianを、Prompt、Skill、Agent、MCP、Hook、Guardrails、Evalという運用部品に分けて扱います。
+          </p>
+        </div>
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <ol class="steps">
+          <li>作業を分解し、AIに渡せる入力、制約、完了条件を決める。</li>
+          <li>生成結果を成果物として保存し、再利用できる形式へ整える。</li>
+          <li>評価、修正、ログ化を行い、次の運用に戻す。</li>
+        </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionTitle
+        kicker="Editorial policy"
+        title="道具の紹介より、運用の再現性を重視する。"
+        text="派手なAIデモではなく、業務に戻したときに残る型、ルール、チェック方法を重視します。"
+      />
+      <div class="feature-grid">
+        <FeatureCard
+          client:visible
+          icon="ClipboardCheck"
+          title="実践ログ"
+          description="試した手順、失敗した条件、改善後の型を残し、次の作業に接続します。"
+        />
+        <FeatureCard
+          client:visible
+          icon="ShieldCheck"
+          title="安全な権限設計"
+          description="秘密情報、外部接続、実行権限を切り分け、AIに任せる範囲を明確にします。"
+        />
+        <FeatureCard
+          client:visible
+          icon="Gauge"
+          title="評価と改善"
+          description="出力の良し悪しを感覚で終わらせず、チェックリストと検証コマンドに落とします。"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="まずは入門ページで全体像をつかむ"
+      text="Prompt、Skill、Agentの違いを整理し、AI業務改善の設計単位を確認します。"
+      primaryHref="/prompt-skill-agent/"
+      primaryLabel="入門を読む"
+    />
+  </div>
+</BaseLayout>

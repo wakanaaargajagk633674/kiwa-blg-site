@@ -1,0 +1,45 @@
+---
+import FadeInSection from "../components/FadeInSection";
+import FeatureCard from "../components/FeatureCard";
+import SectionTitle from "../components/SectionTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact" description="AI業務改善ラボへの連絡方針。現在フォーム送信機能は実装していません。">
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="Contact"
+          title="連絡導線は、公開準備フェーズです。"
+          text="現時点では外部フォーム、メール送信処理、顧客情報の保存は実装していません。静的サイトとして安全に公開できる状態を優先します。"
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="feature-grid">
+        <FeatureCard
+          client:visible
+          icon="ShieldCheck"
+          title="個人情報を扱わない"
+          description="初期公開ではフォーム送信、DB保存、外部CRM連携を入れず、静的ページだけで構成します。"
+        />
+        <FeatureCard
+          client:visible
+          icon="Mail"
+          title="問い合わせ機能は後続実装"
+          description="必要になった段階で、送信先、保存範囲、スパム対策、プライバシーポリシーを決めて実装します。"
+        />
+        <FeatureCard
+          client:visible
+          icon="FileText"
+          title="相談メモの型を先に作る"
+          description="業務課題、使っているツール、改善したい成果物を整理するテンプレートを今後追加します。"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
