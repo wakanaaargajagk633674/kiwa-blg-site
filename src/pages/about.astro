@@ -6,7 +6,7 @@ import SectionTitle from "../components/SectionTitle.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="About" description="AI業務改善ラボの方針、扱うテーマ、運用思想を紹介します。">
+<BaseLayout title="About" description="AI業務改善ラボの目的、扱うテーマ、編集方針、運用上の安全方針を紹介します。">
   <section class="page-hero">
     <div class="container">
       <FadeInSection client:load>
@@ -23,15 +23,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="container two-column-grid">
       <FadeInSection client:visible>
         <div class="info-panel">
-          <h3>扱う中心テーマ</h3>
+          <h3>このサイトの目的</h3>
           <p>
-            ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianを、Prompt、Skill、Agent、MCP、Hook、Guardrails、Evalという運用部品に分けて扱います。
+            AIに質問して終わるのではなく、業務改善、自動化、成果物保存、再利用までつなげることを目的にしています。Prompt、Skill、Agent、Guardrails、Evalを、実務で使える単位に分解して記録します。
           </p>
         </div>
       </FadeInSection>
       <FadeInSection client:visible delay={0.1}>
         <ol class="steps">
-          <li>作業を分解し、AIに渡せる入力、制約、完了条件を決める。</li>
+          <li>業務を分解し、AIに渡せる入力、制約、完了条件を決める。</li>
           <li>生成結果を成果物として保存し、再利用できる形式へ整える。</li>
           <li>評価、修正、ログ化を行い、次の運用に戻す。</li>
         </ol>
@@ -52,30 +52,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           icon="ClipboardCheck"
           title="実践ログ"
           description="試した手順、失敗した条件、改善後の型を残し、次の作業に接続します。"
+          href="/articles/codex-astro-site-build-log/"
         />
         <FeatureCard
           client:visible
           icon="ShieldCheck"
           title="安全な権限設計"
-          description="秘密情報、外部接続、実行権限を切り分け、AIに任せる範囲を明確にします。"
+          description="秘密情報、外部接続、本番操作、実行権限を切り分け、AIに任せる範囲を明確にします。"
+          href="/articles/chatgpt-codex-role-split/"
         />
         <FeatureCard
           client:visible
           icon="Gauge"
           title="評価と改善"
           description="出力の良し悪しを感覚で終わらせず、チェックリストと検証コマンドに落とします。"
+          href="/articles/prompt-skill-agent-practical-difference/"
         />
       </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Scope"
+          title="扱うこと、扱わないことを分ける。"
+          text="AIを実務に入れるほど、任せる範囲と止める範囲を明確にする必要があります。"
+        />
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <div class="info-panel">
+          <h3>運用上の方針</h3>
+          <ul class="check-list">
+            <li>顧客情報、個人情報、秘密情報は扱わない。</li>
+            <li>本番サーバー操作、DNS変更、外部アカウント操作は人間が判断する。</li>
+            <li>AIの出力は、保存、レビュー、検証を通してから再利用する。</li>
+          </ul>
+        </div>
+      </FadeInSection>
     </div>
   </section>
 
   <div class="container">
     <CTASection
       client:visible
-      title="まずは入門ページで全体像をつかむ"
-      text="Prompt、Skill、Agentの違いを整理し、AI業務改善の設計単位を確認します。"
-      primaryHref="/prompt-skill-agent/"
-      primaryLabel="入門を読む"
+      title="まずは思想の記事で全体像を確認する"
+      text="AI業務改善ラボが重視する、相談、実行、保存、再利用の流れをまとめています。"
+      primaryHref="/articles/stop-asking-start-building-ai-operations/"
+      primaryLabel="思想の記事を読む"
+      secondaryHref="/articles/"
+      secondaryLabel="Articlesへ"
     />
   </div>
 </BaseLayout>

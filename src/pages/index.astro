@@ -12,9 +12,12 @@ import type { ArticleModule } from "../lib/articles";
 import { toolComparisons } from "../lib/tools";
 
 const articleModules = import.meta.glob<ArticleModule>("../content/articles/*.{md,mdx}", { eager: true });
-const articles = sortArticles(
-  Object.entries(articleModules).map(([path, articleModule]) => articleFromModule(path, articleModule)),
-).slice(0, 3);
+const allArticles = sortArticles(
+  Object.entries(articleModules)
+    .map(([path, articleModule]) => articleFromModule(path, articleModule))
+    .filter((article) => !article.draft),
+);
+const articles = allArticles.slice(0, 6);
 
 const features = [
   {
@@ -22,21 +25,21 @@ const features = [
     eyebrow: "Process",
     title: "業務をAIに渡せる形へ分解する",
     description: "人が判断すること、AIが生成すること、ツールで実行すること、最後に確認することを分けて設計します。",
-    href: "/prompt-skill-agent/",
+    href: "/articles/stop-asking-start-building-ai-operations/",
   },
   {
     icon: "Terminal",
     eyebrow: "Execution",
     title: "Codexで成果物まで進める",
-    description: "相談で止めず、実装、検証、差分確認、コミットまでを作業単位にして開発Agentに任せます。",
-    href: "/codex/",
+    description: "相談で止めず、実装、検証、差分確認、commit、pushまでを作業単位にして開発Agentに任せます。",
+    href: "/articles/codex-astro-site-build-log/",
   },
   {
     icon: "Library",
     eyebrow: "Knowledge",
     title: "Obsidianに再利用資産を残す",
     description: "Prompt、Skill、Agent、評価ログをMarkdownで保存し、次の案件や定型業務に戻します。",
-    href: "/articles/",
+    href: "/articles/obsidian-ai-output-reuse/",
   },
 ];
 
@@ -87,9 +90,9 @@ const labSystems = [
     <div class="container">
       <FadeInSection client:visible>
         <SectionTitle
-          kicker="Latest logs"
-          title="実践ログ"
-          text="AI業務改善の設計、開発Agent活用、ツール比較を、あとから読み返して使える形で記録します。"
+          kicker="Latest articles"
+          title="公開直後に読むべき実践ログ"
+          text="AIに聞いて終わりにしないための考え方、Prompt / Skill / Agent、Codex、ChatGPT、Obsidianの使い分けをまとめました。"
         />
       </FadeInSection>
       <div class="article-grid">
@@ -107,6 +110,9 @@ const labSystems = [
             />
           ))
         }
+      </div>
+      <div class="section-action">
+        <a class="btn btn-secondary" href="/articles/">すべての記事を見る</a>
       </div>
     </div>
   </section>
@@ -129,12 +135,12 @@ const labSystems = [
   <div class="container">
     <CTASection
       client:visible
-      title="Prompt / Skill / Agent の基本設計から始める"
-      text="AI活用を属人的なコツで終わらせず、保存、共有、改善できる運用単位に変えるための入口です。"
-      primaryHref="/prompt-skill-agent/"
-      primaryLabel="入門ページへ"
-      secondaryHref="/tools/"
-      secondaryLabel="ツール比較を見る"
+      title="まずは思想の記事から読む"
+      text="AI業務改善ラボの中心は、相談、実行、保存、再利用を一つの流れにすることです。入口記事から全体像を確認できます。"
+      primaryHref="/articles/stop-asking-start-building-ai-operations/"
+      primaryLabel="思想の記事を読む"
+      secondaryHref="/articles/"
+      secondaryLabel="記事一覧へ"
     />
   </div>
 </BaseLayout>

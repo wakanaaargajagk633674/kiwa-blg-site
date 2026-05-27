@@ -2,7 +2,7 @@
 import ArticleCard from "../../components/ArticleCard";
 import FadeInSection from "../../components/FadeInSection";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { articleFromModule } from "../../lib/articles";
+import { articleFromModule, getArticleDate } from "../../lib/articles";
 import type { ArticleEntry, ArticleModule } from "../../lib/articles";
 
 export function getStaticPaths() {
@@ -12,7 +12,8 @@ export function getStaticPaths() {
       article: articleFromModule(path, articleModule),
       articleModule,
     }))
-    .sort((a, b) => new Date(b.article.pubDate).getTime() - new Date(a.article.pubDate).getTime());
+    .filter((entry) => !entry.article.draft)
+    .sort((a, b) => new Date(getArticleDate(b.article)).getTime() - new Date(getArticleDate(a.article)).getTime());
 
   return entries.map((entry, index) => ({
     params: { slug: entry.article.slug },

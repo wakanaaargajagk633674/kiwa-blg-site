@@ -38,7 +38,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           client:visible
           icon="FileText"
           title="相談メモの型を先に作る"
-          description="業務課題、使っているAIツール、改善したい成果物を整理するテンプレートを今後追加します。"
+          description="業務課題、使っているAIツール、改善したい成果物を整理するテンプレートを先に用意します。"
         />
       </div>
     </div>
@@ -56,10 +56,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <FadeInSection client:visible delay={0.1}>
         <ol class="steps">
           <li>改善したい業務と、現在かかっている時間を一行で書く。</li>
-          <li>使っているツール、保存場所、権限上の制約を整理する。</li>
+          <li>使っているAIツール、保存場所、権限上の制約を整理する。</li>
           <li>AIに任せたい作業と、人が確認すべき作業を分ける。</li>
           <li>最終的に残したい成果物の形式を決める。</li>
         </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <div class="info-panel">
+          <h3>まだ送らないでほしい情報</h3>
+          <p>
+            問い合わせ導線を整備するまでは、顧客情報、個人情報、APIキー、社内資料、契約情報、ログイン情報などは送らない前提で運用します。
+          </p>
+        </div>
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <div class="info-panel">
+          <h3>先に読むと整理しやすい記事</h3>
+          <ul class="check-list">
+            <li><a href="/articles/stop-asking-start-building-ai-operations/">AIに聞いて終わりをやめる考え方</a></li>
+            <li><a href="/articles/chatgpt-codex-role-split/">ChatGPTとCodexの役割分担</a></li>
+            <li><a href="/articles/obsidian-ai-output-reuse/">Obsidianで成果物を保存する方法</a></li>
+          </ul>
+        </div>
       </FadeInSection>
     </div>
   </section>

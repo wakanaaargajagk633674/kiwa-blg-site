@@ -10,29 +10,31 @@ import type { ArticleModule } from "../../lib/articles";
 
 const articleModules = import.meta.glob<ArticleModule>("../../content/articles/*.{md,mdx}", { eager: true });
 const articles = sortArticles(
-  Object.entries(articleModules).map(([path, articleModule]) => articleFromModule(path, articleModule)),
+  Object.entries(articleModules)
+    .map(([path, articleModule]) => articleFromModule(path, articleModule))
+    .filter((article) => !article.draft),
 );
 
 const categories = Array.from(new Set(articles.map((article) => article.category)));
 
 const routes = [
   {
+    icon: "Workflow",
+    title: "思想から読む",
+    description: "AIに聞いて終わりにしないための基本方針を確認します。",
+    href: "/articles/stop-asking-start-building-ai-operations/",
+  },
+  {
     icon: "FileText",
     title: "Prompt / Skill / Agent から読む",
-    description: "AIに作業を渡すための入力、手順、権限設計を先に整理します。",
-    href: "/prompt-skill-agent/",
+    description: "AIに作業を渡すための入力、手順、権限設計を整理します。",
+    href: "/articles/prompt-skill-agent-practical-difference/",
   },
   {
     icon: "Terminal",
     title: "Codex活用へ進む",
-    description: "リポジトリを読ませ、実装、検証、コミットまで任せる運用を確認します。",
-    href: "/codex/",
-  },
-  {
-    icon: "Wrench",
-    title: "ツール比較で役割を分ける",
-    description: "ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianの使い分けを見直します。",
-    href: "/tools/",
+    description: "Astroサイト構築をCodexに任せた実践ログから確認します。",
+    href: "/articles/codex-astro-site-build-log/",
   },
 ];
 ---
@@ -95,8 +97,8 @@ const routes = [
     <div class="container">
       <SectionTitle
         kicker="Reading route"
-        title="記事が増えたら、目的別に読む。"
-        text="新しい記事は実践ログとして追加し、テーマ別ページからも回遊できるようにします。"
+        title="目的別に読む"
+        text="公開直後の記事は、思想、設計、実装、保存、役割分担の順で読むと全体像をつかみやすくなります。"
       />
       <div class="feature-grid">
         {routes.map((route) => <FeatureCard client:visible {...route} />)}
@@ -107,12 +109,12 @@ const routes = [
   <div class="container">
     <CTASection
       client:visible
-      title="次の記事は実務の作業ログとして追加する"
-      text="実際に使ったPrompt、Skill、Agent設計、検証結果を記事として残すと、サイト全体が業務改善のナレッジベースになります。"
-      primaryHref="/prompt-skill-agent/"
-      primaryLabel="設計の入口へ"
-      secondaryHref="/contact/"
-      secondaryLabel="連絡導線を見る"
+      title="次はAI成果物を保存する仕組みを作る"
+      text="記事を読んで終わりにせず、Prompt、Skill、Agent、Evalを保存する場所を決めると運用に戻しやすくなります。"
+      primaryHref="/articles/obsidian-ai-output-reuse/"
+      primaryLabel="Obsidianの記事へ"
+      secondaryHref="/prompt-skill-agent/"
+      secondaryLabel="入門ページへ"
     />
   </div>
 </BaseLayout>

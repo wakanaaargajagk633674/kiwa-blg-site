@@ -895,6 +895,12 @@ astro-island[ssr] [style*="opacity:0"] {
   margin-top: 18px;
 }
 
+.section-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
 .article-back-link {
   margin: 0 0 22px;
 }

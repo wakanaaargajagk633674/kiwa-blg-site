@@ -28,6 +28,18 @@ npm run preview
 - 公開前または公開後の改善で、OGP画像をSVG仮画像からPNG本番画像へ差し替える。
 - PNGへ差し替える場合は `public/og-image.png` を追加し、`src/lib/site.ts` の `ogImage` を更新する。
 
+## Article Phase
+
+公開直後の初期記事として、AI業務改善ラボの中心テーマを説明する記事を追加しています。
+
+- AIに聞いて終わりをやめる考え方
+- Prompt / Skill / Agent の実務上の違い
+- CodexでAstroサイトを作った流れ
+- ChatGPTとCodexの役割分担
+- ObsidianでAI成果物を保存再利用する方法
+
+記事追加後は必ず `npm run build` を実行し、記事一覧、記事詳細、内部リンクを確認します。
+
 ## Docs
 
 - [お名前.com公開手順](docs/deploy-onamae.md)
