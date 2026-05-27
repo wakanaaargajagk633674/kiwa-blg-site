@@ -1,87 +1,101 @@
 # 公開後改善計画
 
-## 優先順位
+## 優先順位つき改善タスク
 
-1. Google Search Console登録とsitemap送信
-2. OGP画像のPNG化
-3. 初期記事を5本追加
-4. Aboutページの信頼情報を拡充
-5. Contactページの導線を具体化
-6. 内部リンクとカテゴリ導線を強化
-7. 公開後の表示、検索、OGPログを継続記録
+1. Google Search Console登録
+2. Search Consoleで `sitemap-index.xml` を送信
+3. URL検査でトップページを確認し、インデックス登録をリクエスト
+4. OGP画像をSVGからPNGへ差し替え
+5. SNS共有プレビューを確認
+6. 初期記事を5本追加
+7. Aboutページに編集方針と信頼情報を追加
+8. Contactページに相談メモ導線を追加
+9. Articles一覧にカテゴリ別導線を追加
+10. 公開後ログを継続更新
 
-## OGP画像PNG化タスク
+## OGP PNG化
 
-現状:
+現状は `public/og-image.svg` を参照している。
+SVGは軽量だが、SNSや外部プレビューサービスによっては表示が不安定になる場合がある。
 
-- `public/og-image.svg` を使用
-- `src/lib/site.ts` の `ogImage` は `/og-image.svg`
+次の対応:
 
-対応方針:
+- `public/og-image.png` を作成
+- サイズは 1200 x 630px
+- `src/lib/site.ts` の `ogImage` を `/og-image.png` に変更
+- `npm run build` を実行
+- SNS共有プレビューを確認
 
-1. 1200 x 630px のPNG画像を作成する。
-2. ファイル名は `public/og-image.png` にする。
-3. 既存SVGの色設計を踏襲し、暗め背景、グリッド、ティール、アンバーを使う。
-4. テキストは以下を入れる。
-   - `AI業務改善ラボ`
-   - `AIに聞いて終わりにしない`
-   - `ChatGPT / Codex / Agent / Skill / Eval`
-5. `src/lib/site.ts` の `ogImage` を `/og-image.png` に変更する。
-6. `npm run build` を実行する。
-7. 公開後、SNSプレビューまたはOGP確認ツールで表示を確認する。
+詳細は [ogp-png-plan.md](ogp-png-plan.md) に整理する。
 
-## 記事追加候補
+## 記事追加
 
-1. `ChatGPTをAI秘書として使う前に決める5つのルール`
-   - テーマ: ChatGPT、AI秘書、業務改善
-   - 内容: 入力ルール、禁止事項、確認方法、保存先、再利用方法
+最初に追加すべき記事は、サイトの中心テーマを説明し、内部リンクの軸になるものを優先する。
 
-2. `Codexに静的サイト更新を任せる依頼文テンプレート`
-   - テーマ: Codex、Astro、開発Agent
-   - 内容: 作業範囲、禁止事項、検証コマンド、commit条件
+優先5本:
 
-3. `Promptを資産化するObsidianフォルダ設計`
-   - テーマ: Obsidian、Prompt、Skill
-   - 内容: フォルダ構成、命名規則、テンプレート、検索しやすいタグ
+1. AIに聞いて終わりをやめるための業務改善設計
+2. ChatGPTとCodexの役割分担
+3. Prompt / Skill / Agent の違い
+4. ObsidianでAI成果物を保存再利用する
+5. GuardrailsとHuman Approvalの基本
 
-4. `Claude CodeとCodexの使い分けメモ`
-   - テーマ: Claude Code、Codex、AIツール比較
-   - 内容: 読解、設計、実装、検証、レビューの役割分担
+詳細は [article-roadmap.md](article-roadmap.md) に整理する。
 
-5. `AI業務改善でEvalを先に作る理由`
-   - テーマ: Eval、Guardrails、品質管理
-   - 内容: 出力品質の判定基準、チェックリスト、改善ログ化
+## About改善
 
-## Aboutページ改善案
+- サイトの目的をより明確にする
+- 誰に向けたサイトかを明記する
+- 扱うテーマと扱わないテーマを分ける
+- 実践ログ中心の編集方針を追加する
+- 秘密情報や個人情報を扱わない方針を明記する
 
-- サイトの運営目的をより具体化する。
-- 扱うツールと扱わない領域を明記する。
-- `AI業務改善ラボ` の編集方針を追加する。
-- 実践ログ、比較記事、テンプレート記事の分類を説明する。
-- 秘密情報、個人情報、顧客情報を扱わない方針を明記する。
-- 運営者プロフィールを出す場合は、公開してよい範囲だけに限定する。
+詳細は [about-contact-improvement-plan.md](about-contact-improvement-plan.md) に整理する。
 
-## Contactページ改善案
+## Contact改善
 
-- 送信フォームはまだ作らない。
-- 相談前に整理する項目をテンプレート化する。
-- 将来メールアドレスを掲載する場合は、スパム対策を検討する。
-- 外部フォームを使う場合は、プライバシーポリシーと保存範囲を先に決める。
-- 相談対象外の内容を明記する。
-- 返信保証や納期保証につながる表現は避ける。
+- まだフォーム処理は作らない
+- 相談前に整理する項目を提示する
+- Googleフォームやメールリンクを使う場合は、個人情報保護とスパム対策を先に整理する
+- 外部送信や保存が発生する場合は、プライバシーポリシー整備後に実装する
 
-## 内部リンク改善案
+## Search Console登録
 
-- トップページから代表記事へ直接リンクする。
-- Articles一覧にカテゴリ別導線を追加する。
-- 記事下部の関連記事をカテゴリ一致優先にする。
-- `Prompt / Skill / Agent` ページから関連する実践ログへリンクする。
-- `Tools` ページから各ツール別記事へリンクする。
+今回の推奨は URLプレフィックスプロパティ。
 
-## 直近の作業単位
+- 登録URL: `https://kiwa-blg.com/`
+- sitemap送信: `sitemap-index.xml`
+- sitemap URL: `https://kiwa-blg.com/sitemap-index.xml`
 
-1. OGP PNGを追加して差し替える。
-2. Search Console登録後にsitemap送信結果を記録する。
-3. 記事候補1本目をMarkdownで追加する。
-4. Aboutページに編集方針を追加する。
-5. Contactページに相談メモテンプレートを追加する。
+操作は人間がGoogle Search Consoleにログインして手動で行う。
+Agentはログイン、認証、DNS編集、ファイルアップロードを行わない。
+
+詳細は [search-console-setup.md](search-console-setup.md) に整理する。
+
+## SNS共有確認
+
+確認対象:
+
+- X
+- Facebook
+- LINE
+- Slack
+- Discord
+
+確認する項目:
+
+- タイトルが表示される
+- descriptionが表示される
+- OGP画像が表示される
+- URLが `https://kiwa-blg.com/` になっている
+
+## 今後の運用ルール
+
+- 記事追加はMarkdown / MDXで行う
+- 変更後は必ず `npm run build`
+- buildが通ったらcommit
+- remoteが設定済みならpush
+- 本番反映は `dist/` の中身だけを手動アップロード
+- 本番サーバーで直接編集しない
+- 秘密情報、APIキー、個人情報はリポジトリに入れない
+- 公開後の確認結果は `docs/public-launch-log.md` に追記する

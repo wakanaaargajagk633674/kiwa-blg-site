@@ -32,6 +32,12 @@ npm run preview
 
 - [お名前.com公開手順](docs/deploy-onamae.md)
 - [公開前チェックリスト](docs/pre-public-launch-checklist.md)
+- [公開後作業ログ](docs/public-launch-log.md)
+- [公開後改善計画](docs/post-launch-improvement-plan.md)
+- [Google Search Console登録手順](docs/search-console-setup.md)
+- [OGP PNG化計画](docs/ogp-png-plan.md)
+- [記事ロードマップ](docs/article-roadmap.md)
+- [About / Contact改善計画](docs/about-contact-improvement-plan.md)
 
 ## Archived WordPress Theme
 

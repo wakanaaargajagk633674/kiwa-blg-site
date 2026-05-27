@@ -1,59 +1,88 @@
-# 公開後チェックログ
+# 公開後作業ログ
 
-## 基本情報
+## 公開情報
 
-- 対象サイト: https://kiwa-blg.com/
 - 公開日: 2026-05-27
-- 公開方式: Astro静的ビルドを手動アップロード
-- アップロード対象: `release/kiwa-blg-dist.zip` の中身
-- 本番サーバー接続: 未実施
-- お名前.com管理画面ログイン: 未実施
-- FTP / SSH / DB接続: 未実施
-- 自動デプロイ: 未実施
+- 公開URL: https://kiwa-blg.com/
+- サイト名: AI業務改善ラボ
+- 公開フェーズ: 初回公開完了、公開後整備フェーズへ移行
 
-## 公開時点の構成
+## 技術構成
 
-- Astro + React + Motion + TypeScript
+- Astro
+- React
+- Motion
+- TypeScript
+- Markdown / MDX記事管理
 - 静的書き出し
 - SSRなし
 - DBなし
 - API Routesなし
 - 外部フォーム送信なし
-- WordPress由来ファイルは `_old_wordpress_theme/` に退避済み
+
+## 公開方法
+
+- `npm run build` で `dist/` を生成
+- `release/kiwa-blg-dist.zip` を作成
+- zip内のファイルをお名前.comレンタルサーバーへ手動アップロード
+- アップロード対象は `dist/` の中身のみ
+- 本番サーバーへの自動接続、自動デプロイ、FTP / SSH / DB接続は未実施
+
+## release zip
+
+- ファイル: `release/kiwa-blg-dist.zip`
+- 形式: `dist/` フォルダ本体ではなく、`dist/` の中身を格納
+- Git管理: `release/*.zip` は `.gitignore` 対象
+
+## 確認すべきURL
+
+主要ページ:
+
+- https://kiwa-blg.com/
+- https://kiwa-blg.com/about/
+- https://kiwa-blg.com/articles/
+- https://kiwa-blg.com/prompt-skill-agent/
+- https://kiwa-blg.com/codex/
+- https://kiwa-blg.com/tools/
+- https://kiwa-blg.com/contact/
+
+記事ページ:
+
+- https://kiwa-blg.com/articles/codex-static-site-log/
+- https://kiwa-blg.com/articles/prompt-skill-agent-basic/
+- https://kiwa-blg.com/articles/ai-tool-stack-operations/
+
+SEO関連:
+
+- https://kiwa-blg.com/robots.txt
+- https://kiwa-blg.com/sitemap-index.xml
+- https://kiwa-blg.com/sitemap-0.xml
+- https://kiwa-blg.com/og-image.svg
 
 ## リポジトリ側で確認済み
 
-- `npm run build` が成功する
-- `dist/index.html` が生成される
-- `dist/robots.txt` が生成される
-- `dist/sitemap-index.xml` が生成される
-- `dist/sitemap-0.xml` が生成される
-- `robots.txt` は `https://kiwa-blg.com/sitemap-index.xml` を指す
-- `dist/` 直下に主要ページ用ディレクトリが生成される
-- OGP設定は共通Layoutに集約済み
-- OGP画像は初期状態では `og-image.svg`
+- `npm run build` 成功
+- `dist/index.html` 生成済み
+- `dist/robots.txt` 生成済み
+- `dist/sitemap-index.xml` 生成済み
+- `dist/sitemap-0.xml` 生成済み
+- `robots.txt` は `https://kiwa-blg.com/sitemap-index.xml` を指定
+- WordPress由来ファイルは `_old_wordpress_theme/` に退避済み
 
-## 本番で手動確認する項目
+## 現時点の未対応項目
 
-Agentは本番サーバーへ接続しないため、以下はブラウザで手動確認する。
+- Google Search Console登録
+- Search Consoleでのsitemap送信
+- URL検査とインデックス登録リクエスト
+- OGP画像のPNG化
+- SNS共有プレビュー確認
+- 初期記事の追加
+- Aboutページの信頼情報強化
+- Contactページの相談導線具体化
+- 公開後のアクセス状況確認
 
-- `https://kiwa-blg.com/` が表示される
-- `https://kiwa-blg.com/about/` が表示される
-- `https://kiwa-blg.com/articles/` が表示される
-- `https://kiwa-blg.com/prompt-skill-agent/` が表示される
-- `https://kiwa-blg.com/codex/` が表示される
-- `https://kiwa-blg.com/tools/` が表示される
-- `https://kiwa-blg.com/contact/` が表示される
-- `https://kiwa-blg.com/robots.txt` が表示される
-- `https://kiwa-blg.com/sitemap-index.xml` が表示される
-- `https://kiwa-blg.com/sitemap-0.xml` が表示される
-- CSSとJSが読み込まれている
-- スマホ幅でHero、カード、CTAが崩れていない
-- Contactページに送信処理や個人情報入力欄がない
+## 運用メモ
 
-## 公開後の注意点
-
-- 初期OGP画像はSVGのため、SNSプレビューで表示が不安定な場合はPNGへ差し替える。
-- Google Search Console登録後、sitemap送信とインデックス状況を確認する。
-- 追加記事が少ないため、公開直後は検索流入よりも記事追加と内部リンク整備を優先する。
-- 本番で問題が出た場合は、リポジトリで修正して `npm run build` し、`dist/` の中身を再アップロードする。
+- 本番で問題が出た場合は、リポジトリで修正して `npm run build` し、`dist/` の中身だけを再アップロードする。
+- 本番サーバー上で直接ファイル編集しない。
+- `.env`、認証情報、APIキー、顧客情報、個人情報はリポジトリに保存しない。
