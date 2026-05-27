@@ -20,31 +20,31 @@ const features = [
   {
     icon: "Workflow",
     eyebrow: "Process",
-    title: "業務をAIに渡せる粒度へ分解",
-    description: "人の判断、AIの生成、ツール実行、確認作業を切り分け、繰り返し使える手順にします。",
+    title: "業務をAIに渡せる形へ分解する",
+    description: "人が判断すること、AIが生成すること、ツールで実行すること、最後に確認することを分けて設計します。",
     href: "/prompt-skill-agent/",
   },
   {
     icon: "Terminal",
     eyebrow: "Execution",
     title: "Codexで成果物まで進める",
-    description: "実装、検証、差分確認、コミットまでを作業単位にし、開発Agentを現場の手足として使います。",
+    description: "相談で止めず、実装、検証、差分確認、コミットまでを作業単位にして開発Agentに任せます。",
     href: "/codex/",
   },
   {
     icon: "Library",
     eyebrow: "Knowledge",
-    title: "Obsidianに運用知を残す",
-    description: "Prompt、Skill、Agent、評価ログをMarkdownで蓄積し、次の案件へ再利用できる資産にします。",
+    title: "Obsidianに再利用資産を残す",
+    description: "Prompt、Skill、Agent、評価ログをMarkdownで保存し、次の案件や定型業務に戻します。",
     href: "/articles/",
   },
 ];
 
 const labSystems = [
-  "Promptは入力文ではなく、業務判断を安定させる設計書として扱う。",
-  "Skillは繰り返す作業を、手順、制約、検証方法まで含めて保存する。",
-  "Agentは権限、ツール、完了条件を明確にして、実行とレビューを分ける。",
-  "Evalは感覚評価ではなく、再現可能なチェックリストとして運用に戻す。",
+  "Promptは入力文ではなく、目的、制約、出力形式、評価観点をまとめた作業設計書として扱う。",
+  "Skillは繰り返す作業を、手順、禁止事項、検証方法まで含めて保存する。",
+  "Agentは権限、ツール、完了条件を明確にし、実行とレビューを分けて使う。",
+  "Evalは感覚評価で終わらせず、再現できるチェックリストとして改善サイクルに戻す。",
 ];
 ---
 
@@ -56,8 +56,8 @@ const labSystems = [
       <FadeInSection client:visible>
         <SectionTitle
           kicker="Operating model"
-          title="AI活用を、単発の会話から業務システムへ変える。"
-          text="このサイトではAIツールの使い方だけでなく、成果物を保存し、改善し、再利用するための運用設計を扱います。"
+          title="AI活用を、単発の相談から業務改善の仕組みへ変える。"
+          text="このサイトではAIツールの使い方だけでなく、作った成果物を保存し、検証し、次の作業へ再利用するための運用設計を扱います。"
         />
       </FadeInSection>
       <div class="feature-grid">
@@ -71,8 +71,8 @@ const labSystems = [
       <FadeInSection client:visible>
         <SectionTitle
           kicker="Lab principle"
-          title="実務で使えるAIスタッフOSを組む。"
-          text="AI秘書、開発Agent、ナレッジベース、評価ループを個別ツールで終わらせず、現場で回る単位に接続します。"
+          title="AI秘書兼スタッフOSを、現場で回る単位に落とす。"
+          text="ChatGPTで考え、Codexで実行し、Obsidianへ保存する。ツールごとの強みを一つの業務フローとして接続します。"
         />
       </FadeInSection>
       <FadeInSection client:visible delay={0.1}>
@@ -89,7 +89,7 @@ const labSystems = [
         <SectionTitle
           kicker="Latest logs"
           title="実践ログ"
-          text="AI業務改善の設計、開発Agent活用、ツール比較を、現場で再利用しやすい形で記録します。"
+          text="AI業務改善の設計、開発Agent活用、ツール比較を、あとから読み返して使える形で記録します。"
         />
       </FadeInSection>
       <div class="article-grid">
@@ -129,7 +129,7 @@ const labSystems = [
   <div class="container">
     <CTASection
       client:visible
-      title="Prompt / Skill / Agent の基本設計から読む"
+      title="Prompt / Skill / Agent の基本設計から始める"
       text="AI活用を属人的なコツで終わらせず、保存、共有、改善できる運用単位に変えるための入口です。"
       primaryHref="/prompt-skill-agent/"
       primaryLabel="入門ページへ"

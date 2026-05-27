@@ -1,4 +1,5 @@
 ---
+import ArticleCard from "../../components/ArticleCard";
 import FadeInSection from "../../components/FadeInSection";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { articleFromModule } from "../../lib/articles";
@@ -6,28 +7,39 @@ import type { ArticleEntry, ArticleModule } from "../../lib/articles";
 
 export function getStaticPaths() {
   const articleModules = import.meta.glob<ArticleModule>("../../content/articles/*.{md,mdx}", { eager: true });
+  const entries = Object.entries(articleModules)
+    .map(([path, articleModule]) => ({
+      article: articleFromModule(path, articleModule),
+      articleModule,
+    }))
+    .sort((a, b) => new Date(b.article.pubDate).getTime() - new Date(a.article.pubDate).getTime());
 
-  return Object.entries(articleModules).map(([path, articleModule]) => {
-    const article = articleFromModule(path, articleModule);
-
-    return {
-      params: { slug: article.slug },
-      props: { article, articleModule },
-    };
-  });
+  return entries.map((entry, index) => ({
+    params: { slug: entry.article.slug },
+    props: {
+      article: entry.article,
+      articleModule: entry.articleModule,
+      relatedArticles: entries
+        .filter((_, relatedIndex) => relatedIndex !== index)
+        .slice(0, 2)
+        .map((relatedEntry) => relatedEntry.article),
+    },
+  }));
 }
 
-const { article, articleModule } = Astro.props as {
+const { article, articleModule, relatedArticles } = Astro.props as {
   article: ArticleEntry;
   articleModule: ArticleModule;
+  relatedArticles: ArticleEntry[];
 };
 const Content = articleModule.default;
 ---
 
-<BaseLayout title={article.title} description={article.description}>
+<BaseLayout title={article.title} description={article.description} type="article">
   <article class="container article-shell">
     <FadeInSection client:load>
       <header class="article-header">
+        <a class="text-link article-back-link" href="/articles/">Articlesへ戻る</a>
         <div class="article-card-meta">
           <span>{article.category}</span>
           <time datetime={String(article.pubDate)}>{article.dateLabel}</time>
@@ -40,8 +52,31 @@ const Content = articleModule.default;
         </div>
       </header>
     </FadeInSection>
+
     <div class="prose">
       <Content />
     </div>
+
+    {
+      relatedArticles.length > 0 && (
+        <footer class="article-footer-nav">
+          <h2>次に読む</h2>
+          <div class="article-grid">
+            {relatedArticles.map((related) => (
+              <ArticleCard
+                client:visible
+                title={related.title}
+                description={related.description}
+                href={related.href}
+                category={related.category}
+                date={related.dateLabel}
+                readTime={related.readTime}
+                tags={related.tags}
+              />
+            ))}
+          </div>
+        </footer>
+      )
+    }
   </article>
 </BaseLayout>

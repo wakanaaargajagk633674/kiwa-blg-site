@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="AI業務改善ラボ OGP">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#091518"/>
+      <stop offset=".52" stop-color="#070a0d"/>
+      <stop offset="1" stop-color="#15110a"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#55e0c0"/>
+      <stop offset=".58" stop-color="#7bb2ff"/>
+      <stop offset="1" stop-color="#d8aa4d"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#a9c5be" stroke-opacity=".12"/>
+    </pattern>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity=".65"/>
+  <ellipse cx="930" cy="130" rx="290" ry="90" fill="#55e0c0" opacity=".18" filter="url(#blur)"/>
+  <ellipse cx="240" cy="520" rx="320" ry="92" fill="#d8aa4d" opacity=".14" filter="url(#blur)"/>
+  <rect x="72" y="72" width="1056" height="486" rx="18" fill="#10161a" opacity=".62" stroke="#b6ccc4" stroke-opacity=".22"/>
+  <path d="M96 154h1008" stroke="url(#line)" stroke-width="3"/>
+  <text x="96" y="132" fill="#55e0c0" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="28" font-weight="800" letter-spacing="2">AI OPERATIONS IMPROVEMENT LAB</text>
+  <text x="96" y="280" fill="#e8f0ed" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="78" font-weight="800">AI業務改善ラボ</text>
+  <text x="96" y="376" fill="#e8f0ed" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="48" font-weight="700">聞いて終わりにしない。</text>
+  <text x="96" y="458" fill="#aeb8c2" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="31" font-weight="600">ChatGPT / Codex / Agent / Skill / Eval</text>
+  <text x="96" y="510" fill="#d8aa4d" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="26" font-weight="700">kiwa-blg.com</text>
+</svg>

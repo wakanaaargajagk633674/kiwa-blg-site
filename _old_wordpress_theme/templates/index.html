@@ -1,0 +1,45 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","theme":"kiwa-personal-media"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|90"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+
+	<!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"layout":{"type":"default"}} -->
+	<div class="wp-block-query">
+
+		<!-- wp:post-template {"style":{"spacing":{"blockGap":"2rem"}},"layout":{"type":"grid","columnCount":1}} -->
+
+			<!-- wp:group {"className":"post-card","style":{"spacing":{"padding":{"top":"1.5rem","bottom":"1.5rem","left":"1.5rem","right":"1.5rem"}},"border":{"radius":"12px","color":"rgba(32,42,68,0.10)","width":"1px"},"color":{"background":"#fffaf4"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group post-card">
+				<!-- wp:post-featured-image {"isLink":true,"height":"200px","style":{"border":{"radius":"8px"}}} /-->
+				<!-- wp:group {"style":{"spacing":{"blockGap":"0.5rem","padding":{"top":"1rem"}}},"layout":{"type":"flex","flexWrap":"wrap","alignItems":"center"}} -->
+				<div class="wp-block-group">
+					<!-- wp:post-date {"style":{"typography":{"fontSize":"0.8125rem","letterSpacing":"0.05em"},"color":{"text":"#667085"}}} /-->
+					<!-- wp:post-terms {"term":"category","style":{"typography":{"fontSize":"0.8125rem"},"color":{"text":"#b89b72"}}} /-->
+				</div>
+				<!-- /wp:group -->
+				<!-- wp:post-title {"isLink":true,"style":{"typography":{"fontWeight":"600","lineHeight":"1.35"},"spacing":{"margin":{"top":"0.5rem"}}}} /-->
+				<!-- wp:post-excerpt {"moreText":"続きを読む","showMoreOnNewLine":false,"style":{"typography":{"fontSize":"0.9375rem","lineHeight":"1.75"},"color":{"text":"#667085"}}} /-->
+			</div>
+			<!-- /wp:group -->
+
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+		<!-- wp:paragraph {"style":{"color":{"text":"#667085"}}} -->
+		<p style="color:#667085;">まだ記事がありません。</p>
+		<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+	</div>
+	<!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","theme":"kiwa-personal-media"} /-->

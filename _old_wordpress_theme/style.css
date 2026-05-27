@@ -1,0 +1,46 @@
+/*
+Theme Name: Kiwa Personal Media
+Theme URI: https://kiwa-blg.com/
+Author: Kiwa
+Author URI: https://kiwa-blg.com/
+Description: A quiet and modern block theme for a personal media about life design, partnership, AI, web creation, and reflective writing.
+Version: 1.0.0
+Requires at least: 6.6
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: kiwa-personal-media
+Tags: full-site-editing, block-patterns, blog, personal, portfolio, responsive, editor-style, wide-blocks
+*/
+
+/*
+ * Minimal base styles only.
+ * Main design is in theme.json and assets/css/custom.css
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	text-underline-offset: 0.2em;
+}

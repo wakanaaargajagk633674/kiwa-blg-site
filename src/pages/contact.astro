@@ -1,4 +1,5 @@
 ---
+import CTASection from "../components/CTASection";
 import FadeInSection from "../components/FadeInSection";
 import FeatureCard from "../components/FeatureCard";
 import SectionTitle from "../components/SectionTitle.astro";
@@ -11,7 +12,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <FadeInSection client:load>
         <SectionTitle
           kicker="Contact"
-          title="連絡導線は、公開準備フェーズです。"
+          title="問い合わせ機能は、公開準備フェーズです。"
           text="現時点では外部フォーム、メール送信処理、顧客情報の保存は実装していません。静的サイトとして安全に公開できる状態を優先します。"
         />
       </FadeInSection>
@@ -24,22 +25,54 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <FeatureCard
           client:visible
           icon="ShieldCheck"
-          title="個人情報を扱わない"
+          title="個人情報を保存しない"
           description="初期公開ではフォーム送信、DB保存、外部CRM連携を入れず、静的ページだけで構成します。"
         />
         <FeatureCard
           client:visible
           icon="Mail"
-          title="問い合わせ機能は後続実装"
-          description="必要になった段階で、送信先、保存範囲、スパム対策、プライバシーポリシーを決めて実装します。"
+          title="連絡先は後続で掲載"
+          description="公開後に必要な連絡先、受付範囲、返信方針、プライバシー表記を決めて追加します。"
         />
         <FeatureCard
           client:visible
           icon="FileText"
           title="相談メモの型を先に作る"
-          description="業務課題、使っているツール、改善したい成果物を整理するテンプレートを今後追加します。"
+          description="業務課題、使っているAIツール、改善したい成果物を整理するテンプレートを今後追加します。"
         />
       </div>
     </div>
   </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Before contact"
+          title="問い合わせ前に整理する項目"
+          text="送信機能を入れる前に、相談内容の粒度を揃えるための導線を用意します。"
+        />
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <ol class="steps">
+          <li>改善したい業務と、現在かかっている時間を一行で書く。</li>
+          <li>使っているツール、保存場所、権限上の制約を整理する。</li>
+          <li>AIに任せたい作業と、人が確認すべき作業を分ける。</li>
+          <li>最終的に残したい成果物の形式を決める。</li>
+        </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="まずは実践ログから確認する"
+      text="問い合わせ機能を公開するまでは、Prompt、Skill、Agent、Codex活用の記事を増やして判断材料を整えます。"
+      primaryHref="/articles/"
+      primaryLabel="Articlesへ"
+      secondaryHref="/tools/"
+      secondaryLabel="Tools比較へ"
+    />
+  </div>
 </BaseLayout>

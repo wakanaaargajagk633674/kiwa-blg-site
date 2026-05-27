@@ -2,16 +2,16 @@ import { Activity, ArrowRight, Layers, Terminal } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 const metrics = [
-  { label: "Reusable assets", value: "Prompt / Skill / Agent" },
-  { label: "Execution layer", value: "Codex / MCP / Hook" },
-  { label: "Quality loop", value: "Guardrails / Eval / Log" },
+  { label: "相談で終わらせない", value: "業務改善 / 自動化" },
+  { label: "成果物を残す", value: "Prompt / Skill / Agent" },
+  { label: "再利用へ戻す", value: "Guardrails / Eval / Log" },
 ];
 
 const signals = [
-  "業務フローを分解する",
-  "AIに任せる作業単位を定義する",
-  "成果物を保存して再利用する",
-  "評価と改善を運用に戻す",
+  "業務をAIに渡せる単位へ分解",
+  "実行権限と禁止事項を明確化",
+  "成果物を保存し次回の型に変換",
+  "評価ログを改善サイクルへ戻す",
 ];
 
 export default function Hero() {
@@ -35,8 +35,8 @@ export default function Hero() {
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            AIを、相談相手から
-            <span>業務改善の実行基盤へ。</span>
+            <span className="hero-title-main">AIに聞いて</span>
+            <span>終わり、をやめる。</span>
           </motion.h1>
           <motion.p
             className="hero-lede"
@@ -44,7 +44,7 @@ export default function Hero() {
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
           >
-            ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianを使い、業務改善、自動化、成果物保存、再利用までを一つの運用OSとして設計します。
+            ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianをつなぎ、業務改善、自動化、成果物保存、再利用まで進めるための実践サイトです。
           </motion.p>
           <motion.div
             className="hero-actions"
@@ -53,7 +53,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
             <a className="btn btn-primary" href="/prompt-skill-agent/">
-              入門から始める
+              仕組み化の入口へ
               <ArrowRight size={17} aria-hidden="true" />
             </a>
             <a className="btn btn-secondary" href="/articles/">
@@ -73,7 +73,7 @@ export default function Hero() {
               <Activity size={16} aria-hidden="true" />
               Workflow Console
             </span>
-            <small>static / repeatable</small>
+            <small>static / reusable</small>
           </div>
           <div className="signal-list">
             {signals.map((signal, index) => (
@@ -96,7 +96,7 @@ export default function Hero() {
             </span>
             <span>
               <Layers size={15} aria-hidden="true" />
-              reusable output
+              saved asset
             </span>
           </div>
         </motion.div>

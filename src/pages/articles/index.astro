@@ -1,6 +1,8 @@
 ---
 import ArticleCard from "../../components/ArticleCard";
+import CTASection from "../../components/CTASection";
 import FadeInSection from "../../components/FadeInSection";
+import FeatureCard from "../../components/FeatureCard";
 import SectionTitle from "../../components/SectionTitle.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { articleFromModule, sortArticles } from "../../lib/articles";
@@ -10,9 +12,35 @@ const articleModules = import.meta.glob<ArticleModule>("../../content/articles/*
 const articles = sortArticles(
   Object.entries(articleModules).map(([path, articleModule]) => articleFromModule(path, articleModule)),
 );
+
+const categories = Array.from(new Set(articles.map((article) => article.category)));
+
+const routes = [
+  {
+    icon: "FileText",
+    title: "Prompt / Skill / Agent から読む",
+    description: "AIに作業を渡すための入力、手順、権限設計を先に整理します。",
+    href: "/prompt-skill-agent/",
+  },
+  {
+    icon: "Terminal",
+    title: "Codex活用へ進む",
+    description: "リポジトリを読ませ、実装、検証、コミットまで任せる運用を確認します。",
+    href: "/codex/",
+  },
+  {
+    icon: "Wrench",
+    title: "ツール比較で役割を分ける",
+    description: "ChatGPT、Codex、Claude Code、Cursor、Gemini、Obsidianの使い分けを見直します。",
+    href: "/tools/",
+  },
+];
 ---
 
-<BaseLayout title="Articles" description="AI業務改善、Codex活用、Prompt / Skill / Agent設計の実践ログ一覧。">
+<BaseLayout
+  title="Articles"
+  description="AI業務改善、Codex活用、Prompt / Skill / Agent設計の実践ログ一覧。"
+>
   <section class="page-hero">
     <div class="container">
       <FadeInSection client:load>
@@ -27,7 +55,24 @@ const articles = sortArticles(
 
   <section class="section section-tight">
     <div class="container">
-      <div class="article-grid">
+      <FadeInSection client:visible>
+        <div class="article-overview">
+          <div>
+            <span>Published</span>
+            <strong>{articles.length}</strong>
+          </div>
+          <div>
+            <span>Categories</span>
+            <strong>{categories.join(" / ")}</strong>
+          </div>
+          <div>
+            <span>Format</span>
+            <strong>Markdown / MDX</strong>
+          </div>
+        </div>
+      </FadeInSection>
+
+      <div class="article-grid article-grid-spaced">
         {
           articles.map((article) => (
             <ArticleCard
@@ -45,4 +90,29 @@ const articles = sortArticles(
       </div>
     </div>
   </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <SectionTitle
+        kicker="Reading route"
+        title="記事が増えたら、目的別に読む。"
+        text="新しい記事は実践ログとして追加し、テーマ別ページからも回遊できるようにします。"
+      />
+      <div class="feature-grid">
+        {routes.map((route) => <FeatureCard client:visible {...route} />)}
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="次の記事は実務の作業ログとして追加する"
+      text="実際に使ったPrompt、Skill、Agent設計、検証結果を記事として残すと、サイト全体が業務改善のナレッジベースになります。"
+      primaryHref="/prompt-skill-agent/"
+      primaryLabel="設計の入口へ"
+      secondaryHref="/contact/"
+      secondaryLabel="連絡導線を見る"
+    />
+  </div>
 </BaseLayout>
