@@ -1,26 +1,39 @@
 ---
-import { navItems, site } from "../lib/site";
+import { enNavItems, englishSite, navItems, site } from "../lib/site";
 
 const year = new Date().getFullYear();
+const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith("/en/");
+const items = isEnglish ? enNavItems : navItems;
+const brandName = isEnglish ? englishSite.name : site.name;
+const brandHref = isEnglish ? "/en/" : "/";
+const brandMark = isEnglish ? "A" : "K";
+const tagline = isEnglish
+  ? "From AI answers to reusable workflows, assets, and operating routines."
+  : "AIを業務改善の実行基盤へ";
+const copy = isEnglish
+  ? "Practical notes on prompts, skills, agents, guardrails, evaluations, and tool workflows for small teams."
+  : "Prompt、Skill、Agent、MCP、Hook、Guardrails、Evalを、現場で使える運用単位に分解して記録します。";
+const navigationLabel = isEnglish ? "Footer navigation" : "フッターナビゲーション";
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <a class="brand footer-brand" href="/">
-        <span class="brand-mark" aria-hidden="true">K</span>
+      <a class="brand footer-brand" href={brandHref}>
+        <span class="brand-mark" aria-hidden="true">{brandMark}</span>
         <span class="brand-text">
-          <strong>{site.name}</strong>
-          <small>AIを業務改善の実行基盤へ</small>
+          <strong>{brandName}</strong>
+          <small>{tagline}</small>
         </span>
       </a>
       <p class="footer-copy">
-        Prompt、Skill、Agent、MCP、Hook、Guardrails、Evalを、現場で使える運用単位に分解して記録します。
+        {copy}
       </p>
     </div>
 
-    <nav class="footer-nav" aria-label="フッターナビゲーション">
-      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    <nav class="footer-nav" aria-label={navigationLabel}>
+      {items.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
   </div>
   <div class="container footer-bottom">

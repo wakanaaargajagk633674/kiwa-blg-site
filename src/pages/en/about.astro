@@ -1,0 +1,119 @@
+---
+import CTASection from "../../components/CTASection";
+import FadeInSection from "../../components/FadeInSection";
+import FeatureCard from "../../components/FeatureCard";
+import SectionTitle from "../../components/SectionTitle.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { englishSite } from "../../lib/site";
+
+const focusAreas = [
+  {
+    icon: "MessageSquare",
+    title: "Prompt design",
+    description:
+      "Not just wording. A prompt should define context, constraints, output format, review criteria, and the next operational step.",
+  },
+  {
+    icon: "Wrench",
+    title: "Reusable skills",
+    description:
+      "When the same task appears twice, it should become a documented procedure with inputs, checks, and clear boundaries.",
+  },
+  {
+    icon: "Bot",
+    title: "Agents with boundaries",
+    description:
+      "Agents are useful when they can act through tools, but only inside explicit permissions, human approvals, and verification steps.",
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="About AI Operations Lab, a compact English edition of AI業務改善ラボ for practical AI workflow design."
+  lang="en"
+  siteName={englishSite.name}
+  siteTitle={englishSite.title}
+  locale={englishSite.locale}
+>
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="About"
+          title="A practical lab for AI-powered operations."
+          text="AI Operations Lab studies how individuals and small teams can turn AI conversations into repeatable workflows, reusable assets, and safer operating routines."
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <div class="info-panel">
+          <h3>Why this English edition exists</h3>
+          <p>
+            The main site is written in Japanese. This English mini-site is intentionally small: it tests whether
+            international readers are interested in the same practical theme, which is using AI as an execution
+            layer for work instead of a one-off advice tool.
+          </p>
+        </div>
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <ol class="steps">
+          <li>Start from a real task, not from a tool demo.</li>
+          <li>Define what AI can do, what it must not do, and where humans approve.</li>
+          <li>Store the output as a reusable prompt, skill, article, log, or checklist.</li>
+        </ol>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionTitle
+        kicker="Editorial scope"
+        title="Less hype, more operating detail."
+        text="The focus is the work system around AI: reusable instructions, tool boundaries, review loops, and knowledge storage."
+      />
+      <div class="feature-grid">
+        {focusAreas.map((area) => <FeatureCard client:visible {...area} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container two-column-grid">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Safety"
+          title="Humans keep control of production decisions."
+          text="The lab treats AI as a capable work assistant, not as an unchecked operator."
+        />
+      </FadeInSection>
+      <FadeInSection client:visible delay={0.1}>
+        <div class="info-panel">
+          <h3>Operating boundaries</h3>
+          <ul class="check-list">
+            <li>No credentials, secrets, or customer data are handed to AI workflows.</li>
+            <li>Production publishing, DNS, billing, and account actions remain human decisions.</li>
+            <li>Reusable outputs are reviewed before they become part of the operating system.</li>
+          </ul>
+        </div>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="Read the core framework"
+      text="The fastest way to understand this site is to separate prompt, skill, and agent as three different operating layers."
+      primaryHref="/en/articles/prompt-skill-agent-practical-difference/"
+      primaryLabel="Prompt, Skill, Agent"
+      secondaryHref="/en/articles/"
+      secondaryLabel="All English articles"
+    />
+  </div>
+</BaseLayout>

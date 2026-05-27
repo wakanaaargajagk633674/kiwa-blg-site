@@ -59,6 +59,9 @@ export default function Hero() {
             <a className="btn btn-secondary" href="/articles/">
               実践ログを見る
             </a>
+            <a className="btn btn-secondary" href="/en/">
+              English
+            </a>
           </motion.div>
         </div>
 

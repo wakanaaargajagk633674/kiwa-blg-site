@@ -11,6 +11,10 @@ interface Props {
   image?: string;
   type?: "website" | "article";
   noindex?: boolean;
+  lang?: string;
+  siteName?: string;
+  siteTitle?: string;
+  locale?: string;
 }
 
 const {
@@ -19,15 +23,19 @@ const {
   image = site.ogImage,
   type = "website",
   noindex = false,
+  lang = "ja",
+  siteName = site.name,
+  siteTitle = site.title,
+  locale = site.locale,
 } = Astro.props;
 
-const pageTitle = title === site.name ? site.title : `${title} | ${site.name}`;
+const pageTitle = title === siteName || title === siteTitle ? siteTitle : `${title} | ${siteName}`;
 const canonical = new URL(Astro.url.pathname, site.url).toString();
 const ogImage = new URL(image, site.url).toString();
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,14 +47,14 @@ const ogImage = new URL(image, site.url).toString();
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#070a0d" />
 
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={locale} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content={`${site.name} OGP image`} />
+    <meta property="og:image:alt" content={`${siteName} OGP image`} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />

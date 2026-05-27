@@ -1,0 +1,174 @@
+---
+import ArticleCard from "../../components/ArticleCard";
+import CTASection from "../../components/CTASection";
+import FadeInSection from "../../components/FadeInSection";
+import FeatureCard from "../../components/FeatureCard";
+import SectionTitle from "../../components/SectionTitle.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { englishSite } from "../../lib/site";
+
+const featuredArticles = [
+  {
+    title: "Stop Asking AI. Start Building AI-Powered Operations.",
+    description:
+      "A practical introduction to turning AI conversations into reusable workflows, guardrails, and working assets.",
+    href: "/en/articles/stop-asking-start-building-ai-operations/",
+    category: "Operating model",
+    date: "May 27, 2026",
+    readTime: "7 min read",
+    tags: ["AI operations", "Workflow", "Guardrails"],
+  },
+  {
+    title: "Prompt, Skill, and Agent: A Practical Difference for Workflows",
+    description:
+      "A plain-English framework for separating one-off instructions, reusable procedures, and AI workers with tools.",
+    href: "/en/articles/prompt-skill-agent-practical-difference/",
+    category: "Framework",
+    date: "May 27, 2026",
+    readTime: "8 min read",
+    tags: ["Prompt", "Skill", "Agent"],
+  },
+];
+
+const principles = [
+  {
+    icon: "Workflow",
+    eyebrow: "From chat to workflow",
+    title: "Convert useful answers into repeatable work",
+    description:
+      "The goal is not a clever prompt. The goal is a workflow that can be reused, reviewed, and improved.",
+    href: "/en/articles/stop-asking-start-building-ai-operations/",
+  },
+  {
+    icon: "ShieldCheck",
+    eyebrow: "Guardrails",
+    title: "Separate automation from approval",
+    description:
+      "AI can draft, check, compare, and execute local tasks. Humans keep control of production, credentials, and final calls.",
+  },
+  {
+    icon: "Library",
+    eyebrow: "Knowledge assets",
+    title: "Store outputs where the team can find them",
+    description:
+      "Prompts, procedures, logs, and evaluations should become a lightweight operating system for the next task.",
+  },
+];
+---
+
+<BaseLayout
+  title={englishSite.name}
+  description={englishSite.description}
+  lang="en"
+  siteName={englishSite.name}
+  siteTitle={englishSite.title}
+  locale={englishSite.locale}
+>
+  <section class="hero en-hero">
+    <div class="container hero-layout">
+      <FadeInSection client:load className="hero-copy">
+        <p class="hero-kicker">AI Operations Lab</p>
+        <h1 class="hero-title">
+          <span class="hero-title-main">Stop asking AI.</span>
+          <span>Start building AI-powered workflows.</span>
+        </h1>
+        <p class="hero-lede">
+          A compact English edition of AI業務改善ラボ for testing global demand around practical AI operations,
+          Codex-powered delivery, reusable prompts, agent design, and knowledge workflows.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/en/articles/">
+            Read the English notes
+          </a>
+          <a class="btn btn-secondary" href="/">
+            Japanese site
+          </a>
+        </div>
+      </FadeInSection>
+
+      <FadeInSection client:load className="hero-signal-panel" delay={0.12}>
+        <div class="signal-header">
+          <span>Workflow Console</span>
+          <small>static / reusable</small>
+        </div>
+        <div class="signal-list">
+          <div class="signal-item">
+            <span class="signal-index">01</span>
+            <span>Capture the work goal, constraints, and definition of done.</span>
+          </div>
+          <div class="signal-item">
+            <span class="signal-index">02</span>
+            <span>Use AI tools to draft, edit, check, and package the asset.</span>
+          </div>
+          <div class="signal-item">
+            <span class="signal-index">03</span>
+            <span>Save the result as a prompt, skill, workflow, or operating note.</span>
+          </div>
+          <div class="signal-item">
+            <span class="signal-index">04</span>
+            <span>Review with guardrails before production or external action.</span>
+          </div>
+        </div>
+        <div class="signal-footer">
+          <span>Codex task</span>
+          <span>Reusable asset</span>
+        </div>
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Operating model"
+          title="AI is most useful when it leaves something behind."
+          text="This mini-site focuses on practical AI operations: prompts that become procedures, procedures that become skills, and agents that work inside clear permissions."
+        />
+      </FadeInSection>
+      <div class="feature-grid">
+        {principles.map((feature) => <FeatureCard client:visible {...feature} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <FadeInSection client:visible>
+        <SectionTitle
+          kicker="Start here"
+          title="Two short reads for international readers"
+          text="These English articles explain the core idea without assuming the Japanese launch story or local publishing context."
+        />
+      </FadeInSection>
+      <div class="article-grid">
+        {
+          featuredArticles.map((article) => (
+            <ArticleCard
+              client:visible
+              title={article.title}
+              description={article.description}
+              href={article.href}
+              category={article.category}
+              date={article.date}
+              readTime={article.readTime}
+              tags={article.tags}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="Build a small AI operating loop"
+      text="Start with one recurring task, write down the guardrails, let AI produce a concrete asset, and store the result for the next run."
+      primaryHref="/en/articles/stop-asking-start-building-ai-operations/"
+      primaryLabel="Read the operating model"
+      secondaryHref="/en/about/"
+      secondaryLabel="About the lab"
+    />
+  </div>
+</BaseLayout>

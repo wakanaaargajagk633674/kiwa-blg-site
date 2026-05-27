@@ -1,0 +1,148 @@
+---
+import ArticleCard from "../../../components/ArticleCard";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { englishSite } from "../../../lib/site";
+
+const title = "Stop Asking AI. Start Building AI-Powered Operations.";
+const description =
+  "A practical introduction to turning AI conversations into reusable workflows, guardrails, and working assets.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  lang="en"
+  siteName={englishSite.name}
+  siteTitle={englishSite.title}
+  locale={englishSite.locale}
+>
+  <article class="container article-shell">
+    <header class="article-header">
+      <p class="article-back-link">
+        <a class="text-link" href="/en/articles/">Back to English articles</a>
+      </p>
+      <div class="article-card-meta">
+        <span>Operating model</span>
+        <time datetime="2026-05-27">May 27, 2026</time>
+        <span>7 min read</span>
+      </div>
+      <h1>{title}</h1>
+      <p class="hero-lede">{description}</p>
+      <div class="tag-row">
+        <span>AI operations</span>
+        <span>Workflow</span>
+        <span>Guardrails</span>
+      </div>
+    </header>
+
+    <div class="prose">
+      <p>
+        The first mistake many teams make with AI is treating it as a faster search box or a patient consultant.
+        That is useful, but it leaves most of the value on the table. A good answer disappears into chat history.
+        A good workflow leaves behind a reusable asset.
+      </p>
+
+      <p>
+        AI Operations Lab starts from a simple rule: do not stop at asking. Use AI to produce something that can
+        be reviewed, stored, improved, and run again. That output might be a checklist, a draft page, a code
+        change, a prompt template, a research note, a deployment guide, or a procedure for the next operator.
+      </p>
+
+      <h2>What changes when AI becomes an operating layer</h2>
+      <p>
+        When AI is only a conversation partner, the human carries the process in their head. They remember what
+        to ask, which constraints matter, what good output looks like, and which steps must be checked manually.
+        The next person has to rediscover the same pattern.
+      </p>
+
+      <p>
+        When AI becomes an operating layer, the process is made explicit. The work goal, inputs, permissions,
+        forbidden actions, review criteria, and completion conditions are written down. AI can then help execute
+        a defined task rather than improvise around an unclear request.
+      </p>
+
+      <h2>The basic loop: ask, build, save, improve</h2>
+      <p>
+        A practical AI workflow does not need to be complex. Start with four steps:
+      </p>
+
+      <ol>
+        <li>Ask AI to clarify the task, constraints, and expected output.</li>
+        <li>Build a concrete asset such as a page, checklist, document, code change, or operating note.</li>
+        <li>Save the result in a place where it can be found and reused.</li>
+        <li>Improve the procedure after each run by adding checks, examples, and edge cases.</li>
+      </ol>
+
+      <p>
+        This loop matters because it changes the unit of progress. The goal is no longer "I got a useful answer."
+        The goal is "we now have a reusable part of the workflow."
+      </p>
+
+      <h2>Prompts are only the first layer</h2>
+      <p>
+        A prompt is the instruction you give in the moment. It can be detailed and effective, but it is still
+        fragile if it only lives in a chat box. Once the same prompt is used repeatedly, it should become a skill:
+        a documented procedure with inputs, steps, constraints, examples, and verification criteria.
+      </p>
+
+      <p>
+        When that skill needs to use files, tools, commands, or multiple decisions, it begins to look like agent
+        work. At that point, you need stronger boundaries: what the agent may do, what it must never do, when it
+        must stop, and what a human must approve.
+      </p>
+
+      <p>
+        For a deeper vocabulary, read <a href="/en/articles/prompt-skill-agent-practical-difference/">Prompt,
+        Skill, and Agent: A Practical Difference for Workflows</a>.
+      </p>
+
+      <h2>Guardrails are part of the workflow, not a legal disclaimer</h2>
+      <p>
+        Guardrails are the rules that keep a workflow usable. They can be technical, such as "do not read secrets"
+        or "only edit files inside this repository." They can also be operational, such as "do not publish to
+        production" or "ask for human approval before touching DNS."
+      </p>
+
+      <p>
+        Strong guardrails make automation easier, not harder. They give the AI a safer working space and give the
+        human a clearer review surface.
+      </p>
+
+      <h2>Evaluation closes the loop</h2>
+      <p>
+        Every reusable AI workflow needs a way to decide whether the output is good enough. That evaluation can
+        be a build command, a checklist, a visual review, a style guide, a test suite, or a human approval step.
+        The important point is to write it down.
+      </p>
+
+      <p>
+        If the evaluation only exists as intuition, the workflow will be hard to improve. If the evaluation is
+        explicit, the next run can be better than the last one.
+      </p>
+
+      <h2>Next read</h2>
+      <p>
+        Next, read the framework article on <a href="/en/articles/prompt-skill-agent-practical-difference/">Prompt,
+        Skill, and Agent</a>. It explains how to name each layer of this operating model and how to decide when a
+        task is ready for tools or human approval.
+      </p>
+    </div>
+
+    <section class="article-footer-nav">
+      <h2>Next read</h2>
+      <div class="article-grid">
+        <ArticleCard
+          client:visible
+          title="Prompt, Skill, and Agent: A Practical Difference for Workflows"
+          description="A plain-English framework for separating one-off instructions, reusable procedures, and AI workers with tools."
+          href="/en/articles/prompt-skill-agent-practical-difference/"
+          category="Framework"
+          date="May 27, 2026"
+          readTime="8 min read"
+          tags={["Prompt", "Skill", "Agent"]}
+        />
+      </div>
+    </section>
+  </article>
+</BaseLayout>

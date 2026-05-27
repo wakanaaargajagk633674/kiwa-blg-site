@@ -86,7 +86,7 @@ export default function FeatureCard({ icon, eyebrow, title, description, items, 
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
     >
       {href ? (
-        <a href={href} aria-label={`${title} を読む`}>
+        <a href={href} aria-label={title}>
           {content}
         </a>
       ) : (

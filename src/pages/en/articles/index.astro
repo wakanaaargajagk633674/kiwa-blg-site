@@ -1,0 +1,133 @@
+---
+import ArticleCard from "../../../components/ArticleCard";
+import CTASection from "../../../components/CTASection";
+import FadeInSection from "../../../components/FadeInSection";
+import FeatureCard from "../../../components/FeatureCard";
+import SectionTitle from "../../../components/SectionTitle.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { englishSite } from "../../../lib/site";
+
+const articles = [
+  {
+    title: "Stop Asking AI. Start Building AI-Powered Operations.",
+    description:
+      "A practical introduction to turning AI conversations into reusable workflows, guardrails, and working assets.",
+    href: "/en/articles/stop-asking-start-building-ai-operations/",
+    category: "Operating model",
+    date: "May 27, 2026",
+    readTime: "7 min read",
+    tags: ["AI operations", "Workflow", "Guardrails"],
+  },
+  {
+    title: "Prompt, Skill, and Agent: A Practical Difference for Workflows",
+    description:
+      "A plain-English framework for separating one-off instructions, reusable procedures, and AI workers with tools.",
+    href: "/en/articles/prompt-skill-agent-practical-difference/",
+    category: "Framework",
+    date: "May 27, 2026",
+    readTime: "8 min read",
+    tags: ["Prompt", "Skill", "Agent"],
+  },
+];
+
+const readingRoutes = [
+  {
+    icon: "Workflow",
+    title: "Start with the operating model",
+    description:
+      "Use this when you want to move from AI chats to reusable work assets and clearer workflow ownership.",
+    href: "/en/articles/stop-asking-start-building-ai-operations/",
+  },
+  {
+    icon: "Layers",
+    title: "Then separate prompt, skill, and agent",
+    description:
+      "Use this when your team needs shared vocabulary for instructions, procedures, tools, and approvals.",
+    href: "/en/articles/prompt-skill-agent-practical-difference/",
+  },
+];
+---
+
+<BaseLayout
+  title="Articles"
+  description="English notes from AI Operations Lab on AI operations, prompt design, skills, agents, guardrails, and reusable workflows."
+  lang="en"
+  siteName={englishSite.name}
+  siteTitle={englishSite.title}
+  locale={englishSite.locale}
+>
+  <section class="page-hero">
+    <div class="container">
+      <FadeInSection client:load>
+        <SectionTitle
+          kicker="Articles"
+          title="English notes for practical AI operations."
+          text="This first English collection is intentionally focused: two entry articles that explain the operating model and the prompt / skill / agent framework."
+        />
+      </FadeInSection>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <FadeInSection client:visible>
+        <div class="article-overview">
+          <div>
+            <span>Published</span>
+            <strong>{articles.length}</strong>
+          </div>
+          <div>
+            <span>Focus</span>
+            <strong>AI operations / reusable workflows</strong>
+          </div>
+          <div>
+            <span>Edition</span>
+            <strong>English mini-site</strong>
+          </div>
+        </div>
+      </FadeInSection>
+
+      <div class="article-grid article-grid-spaced">
+        {
+          articles.map((article) => (
+            <ArticleCard
+              client:visible
+              title={article.title}
+              description={article.description}
+              href={article.href}
+              category={article.category}
+              date={article.date}
+              readTime={article.readTime}
+              tags={article.tags}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <SectionTitle
+        kicker="Reading route"
+        title="A minimal path through the ideas"
+        text="Read the operating model first, then use the framework article to name the reusable layers in your own workflow."
+      />
+      <div class="feature-grid">
+        {readingRoutes.map((route) => <FeatureCard client:visible {...route} />)}
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <CTASection
+      client:visible
+      title="Compare with the Japanese edition"
+      text="The Japanese site contains the full launch log, Codex build notes, Obsidian workflow, and local publishing details."
+      primaryHref="/articles/"
+      primaryLabel="Japanese articles"
+      secondaryHref="/en/"
+      secondaryLabel="English home"
+    />
+  </div>
+</BaseLayout>

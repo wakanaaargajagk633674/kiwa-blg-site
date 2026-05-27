@@ -8,6 +8,15 @@ export const site = {
   locale: "ja_JP",
 };
 
+export const englishSite = {
+  name: "AI Operations Lab",
+  title: "AI Operations Lab | Stop asking AI. Start building AI-powered workflows.",
+  description:
+    "A practical lab for turning ChatGPT, Codex, Claude, Cursor, and Obsidian into reusable AI-powered operations, workflows, and knowledge assets.",
+  ogImage: "/og-image.svg",
+  locale: "en_US",
+};
+
 export const navItems = [
   { href: "/", label: "Top" },
   { href: "/about/", label: "About" },
@@ -16,4 +25,10 @@ export const navItems = [
   { href: "/codex/", label: "Codex" },
   { href: "/tools/", label: "Tools" },
   { href: "/contact/", label: "Contact" },
+];
+
+export const enNavItems = [
+  { href: "/en/", label: "Home" },
+  { href: "/en/about/", label: "About" },
+  { href: "/en/articles/", label: "Articles" },
 ];

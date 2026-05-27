@@ -1,24 +1,35 @@
 ---
-import { navItems, site } from "../lib/site";
+import { enNavItems, englishSite, navItems, site } from "../lib/site";
 
 const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith("/en/");
+const items = isEnglish ? enNavItems : navItems;
+const brandName = isEnglish ? englishSite.name : site.name;
+const brandHref = isEnglish ? "/en/" : "/";
+const brandMark = isEnglish ? "A" : "K";
+const navigationLabel = isEnglish ? "Main navigation" : "メインナビゲーション";
+const menuLabel = isEnglish ? "Open menu" : "メニューを開く";
+const ctaHref = isEnglish ? "/en/articles/" : "/contact/";
+const ctaLabel = isEnglish ? "Read articles" : "相談メモ";
+const languageHref = isEnglish ? "/" : "/en/";
+const languageLabel = isEnglish ? "日本語" : "English";
 const isActive = (href: string) =>
-  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+  href === "/" || href === "/en/" ? currentPath === href : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={`${site.name} トップへ`}>
-      <span class="brand-mark" aria-hidden="true">K</span>
+    <a class="brand" href={brandHref} aria-label={`${brandName} top`}>
+      <span class="brand-mark" aria-hidden="true">{brandMark}</span>
       <span class="brand-text">
-        <strong>{site.name}</strong>
+        <strong>{brandName}</strong>
         <small>kiwa-blg.com</small>
       </span>
     </a>
 
-    <nav class="desktop-nav" aria-label="メインナビゲーション">
+    <nav class="desktop-nav" aria-label={navigationLabel}>
       {
-        navItems.map((item) => (
+        items.map((item) => (
           <a class:list={["nav-link", isActive(item.href) && "is-active"]} href={item.href}>
             {item.label}
           </a>
@@ -26,22 +37,24 @@ const isActive = (href: string) =>
       }
     </nav>
 
-    <a class="header-cta" href="/contact/">相談メモ</a>
+    <a class="language-link desktop-language-link" href={languageHref}>{languageLabel}</a>
+    <a class="header-cta" href={ctaHref}>{ctaLabel}</a>
 
     <details class="mobile-nav">
-      <summary aria-label="メニューを開く">
+      <summary aria-label={menuLabel}>
         <span></span>
         <span></span>
         <span></span>
       </summary>
       <div class="mobile-nav-panel">
         {
-          navItems.map((item) => (
+          items.map((item) => (
             <a class:list={["mobile-nav-link", isActive(item.href) && "is-active"]} href={item.href}>
               {item.label}
             </a>
           ))
         }
+        <a class="mobile-nav-link language-mobile-link" href={languageHref}>{languageLabel}</a>
       </div>
     </details>
   </div>
